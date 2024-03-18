@@ -18,7 +18,7 @@
     % Define the fancyheader style
     \fancypagestyle{fancyheader}{%
         \fancyhf{} % clear all header and footer fields
-        \fancyhead[L]{ME3613\\} % Left header
+        \fancyhead[L]{ME 3613\\} % Left header
         \fancyhead[C]{Final Exam\\} % Center header
         \fancyhead[R]{Gabe Morris\\gnm54\vspace{0.005in}} % Right header
         \fancyfoot[C]{\thepage} % Footer
@@ -34,13 +34,29 @@
 \begin{center}
 Gabe Morris
 \end{center}
+
+\setcounter{secnumdepth}{0}
 ((* endblock abstract *))
+
+((* block markdowncell scoped *))
+    ((* if "# npb" not in nb.cells[0].source *))
+        ((* set modified_source = cell.source | replace("\n# ", "\n\n\\pagebreak\n\\thispagestyle{fancyheader}\n\n# ") *))
+
+        ((* if modified_source[:2] == "# " *))
+            ((* set modified_source = "\n\n\\pagebreak\n\\thispagestyle{fancyheader}\n\n" ~ modified_source *))
+        ((* endif *))
+
+    ((* else *))
+        ((* set modified_source = cell.source *))
+    ((* endif *))
+    ((( modified_source | citation2latex | strip_files_prefix | convert_pandoc('markdown+tex_math_double_backslash', 'json',extra_args=[]) | resolve_references | convert_explicitly_relative_paths | convert_pandoc('json','latex') )))
+((* endblock markdowncell *))
 
 ((* block any_cell *))
 
     ((( super() )))
 
-    ((* if "# toc" in cell.source[:5] and cell.id == "initial_id" *))
+    ((* if "# toc" in cell.source and cell.id == "initial_id" *))
     \pagebreak
     \tableofcontents
     ((* endif *))
