@@ -1,1 +1,30 @@
 ((* extends "index.tex.j2" *))
+
+((* block packages *))
+    ((( super() )))
+    \usepackage{fancyhdr}
+((* endblock packages *))
+
+((* block commands *))
+    ((( super() )))
+
+    % Define the default header style
+    \fancypagestyle{plain}{%
+        \fancyhf{} % Clear all header and footer fields for plain style
+        \fancyfoot[C]{\thepage} % Footer for the plain style
+        \renewcommand{\headrulewidth}{0pt} % No header line for the plain style
+    }
+
+    % Define the fancyheader style
+    \fancypagestyle{fancyheader}{%
+        \fancyhf{} % clear all header and footer fields
+        \fancyhead[L]{ME3613\\} % Left header
+        \fancyhead[C]{Final Exam\\} % Center header
+        \fancyhead[R]{Gabe Morris\\gnm54\vspace{0.005in}} % Right header
+        \fancyfoot[C]{\thepage} % Footer
+        \renewcommand{\headrulewidth}{0.4pt} % Line under the header
+    }
+
+    % Set the default page style to plain to only include the footer
+    \pagestyle{plain}
+((* endblock commands *))
