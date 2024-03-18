@@ -3,6 +3,7 @@
 ((* block packages *))
     ((( super() )))
     \usepackage{fancyhdr}
+    \usepackage{titlesec}
 ((* endblock packages *))
 
 ((* block commands *))
@@ -28,6 +29,19 @@
 
     % Set the default page style to plain to only include the footer
     \pagestyle{plain}
+
+    \definecolor{maroon}{RGB}{128,0,0}
+    \titleformat{\section}
+      {\normalfont\Large\bfseries\color{maroon}} % Format of the section
+      {\thesection}{1em}{} % Format of the section label
+
+    \titleformat{\subsection}
+      {\normalfont\large\bfseries\color{maroon}} % Similarly, for subsections
+      {\thesubsection}{1em}{}
+
+    \titleformat{\subsubsection}
+      {\normalfont\normalsize\bfseries\color{maroon}} % And for subsubsections
+      {\thesubsubsection}{1em}{}
 ((* endblock commands *))
 
 ((* block abstract *))
@@ -62,3 +76,10 @@ Gabe Morris
     ((* endif *))
 
 ((* endblock any_cell *))
+
+((* block definitions *))
+    ((( super() )))
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{RGB}{0,0,0}
+    \definecolor{citecolor}{RGB}{128,0,0}
+((* endblock definitions *))
