@@ -23,8 +23,26 @@
         \fancyhead[R]{Gabe Morris\\gnm54\vspace{0.005in}} % Right header
         \fancyfoot[C]{\thepage} % Footer
         \renewcommand{\headrulewidth}{0.4pt} % Line under the header
+        \setlength{\headsep}{0.4in}
     }
 
     % Set the default page style to plain to only include the footer
     \pagestyle{plain}
 ((* endblock commands *))
+
+((* block abstract *))
+\begin{center}
+Gabe Morris
+\end{center}
+((* endblock abstract *))
+
+((* block any_cell *))
+
+    ((( super() )))
+
+    ((* if "# toc" in cell.source[:5] and cell.id == "initial_id" *))
+    \pagebreak
+    \tableofcontents
+    ((* endif *))
+
+((* endblock any_cell *))
