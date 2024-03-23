@@ -10,14 +10,14 @@
     ((( super() )))
 
     % Define the default header style
-    \fancypagestyle{plain}{%
+    \fancypagestyle{plain}{
         \fancyhf{} % Clear all header and footer fields for plain style
         \fancyfoot[C]{\thepage} % Footer for the plain style
         \renewcommand{\headrulewidth}{0pt} % No header line for the plain style
     }
 
     % Define the fancyheader style
-    \fancypagestyle{fancyheader}{%
+    \fancypagestyle{fancyheader}{
         \fancyhf{} % clear all header and footer fields
         \fancyhead[L]{ME 3613\\} % Left header
         \fancyhead[C]{Final Exam\\} % Center header
@@ -66,13 +66,16 @@ Gabe Morris
     ((( modified_source | citation2latex | strip_files_prefix | convert_pandoc('markdown+tex_math_double_backslash', 'json',extra_args=[]) | resolve_references | convert_explicitly_relative_paths | convert_pandoc('json','latex') )))
 ((* endblock markdowncell *))
 
+((* set encountered_first_code_cell = false *))
+
 ((* block any_cell *))
 
     ((( super() )))
 
-    ((* if "# toc" in cell.source and cell.id == "initial_id" *))
+    ((* if "# toc" in cell.source and encountered_first_code_cell == false *))
     \pagebreak
     \tableofcontents
+    ((* set encountered_first_code_cell = true *))
     ((* endif *))
 
 ((* endblock any_cell *))
